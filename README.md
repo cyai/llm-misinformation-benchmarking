@@ -1,4 +1,4 @@
-# LangFact — LLM Fact Checking (Politifact, zero-shot)
+# LLM Misinfo Benchmarkking
 
 ## Setup
 
@@ -8,7 +8,7 @@ pip install -r requirements.txt
 cp .env.example .env   # fill OPENAI_API_KEY & OPENAI_MODEL
 ```
 
-## 📥 Downloading the Politifact Dataset
+## Downloading the Politifact Dataset
 ```bash
 curl -L -o politifact-fact-check-dataset.zip https://www.kaggle.com/api/v1/datasets/download/rmisra/politifact-fact-check-dataset
 ```
@@ -19,7 +19,7 @@ unzip politifact-fact-check-dataset.zip -d ./data/politifact
 
 ---
 
-## 🧠 Running `run_factcheck.py`
+## Running `run_factcheck.py`
 
 The main entry point for this project is:
 
