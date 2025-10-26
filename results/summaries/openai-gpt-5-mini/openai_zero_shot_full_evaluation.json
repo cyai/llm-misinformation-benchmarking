@@ -1,0 +1,99 @@
+{
+  "dataset_info": {
+    "total_samples": 200,
+    "label_distribution_true": {
+      "FALSE": 106,
+      "MIXED": 34,
+      "FACT": 60
+    },
+    "label_distribution_pred": {
+      "FALSE": 45,
+      "MIXED": 147,
+      "FACT": 8
+    }
+  },
+  "multiclass_metrics": {
+    "accuracy": 0.38,
+    "f1_micro": 0.38,
+    "f1_macro": 0.35057834922780357,
+    "f1_weighted": 0.3867517169686653,
+    "precision_micro": 0.38,
+    "precision_macro": 0.643442932728647,
+    "precision_weighted": 0.7459058956916099,
+    "recall_micro": 0.38,
+    "recall_macro": 0.46230731286225185,
+    "recall_weighted": 0.38,
+    "precision_false": 0.8444444444444444,
+    "recall_false": 0.3584905660377358,
+    "f1_false": 0.5033112582781457,
+    "precision_mixed": 0.2108843537414966,
+    "recall_mixed": 0.9117647058823529,
+    "f1_mixed": 0.3425414364640884,
+    "precision_fact": 0.875,
+    "recall_fact": 0.11666666666666667,
+    "f1_fact": 0.20588235294117646
+  },
+  "binary_metrics": {
+    "binary_accuracy": 0.73,
+    "binary_precision_fact": 0.875,
+    "binary_recall_fact": 0.11666666666666667,
+    "binary_f1_fact": 0.20588235294117646,
+    "binary_precision_nonfact": 0.7239583333333334,
+    "binary_recall_nonfact": 0.9928571428571429,
+    "binary_f1_nonfact": 0.8373493975903614
+  },
+  "auc_metrics": {
+    "auc_binary": 0.6537499999999999,
+    "auc_multiclass_ovr": 0.6766036356365236
+  },
+  "confusion_matrix": [
+    [
+      38,
+      68,
+      0
+    ],
+    [
+      2,
+      31,
+      1
+    ],
+    [
+      5,
+      48,
+      7
+    ]
+  ],
+  "classification_report": "              precision    recall  f1-score   support\n\n       FALSE       0.84      0.36      0.50       106\n       MIXED       0.21      0.91      0.34        34\n        FACT       0.88      0.12      0.21        60\n\n    accuracy                           0.38       200\n   macro avg       0.64      0.46      0.35       200\nweighted avg       0.75      0.38      0.39       200\n",
+  "analysis": {
+    "mean_confidence": 0.7419499999999999,
+    "std_confidence": 0.15101886471563744,
+    "confidence_by_label_true": {
+      "FALSE": {
+        "mean": 0.754622641509434,
+        "std": 0.1738366969981054
+      },
+      "MIXED": {
+        "mean": 0.7276470588235294,
+        "std": 0.12345656115148146
+      },
+      "FACT": {
+        "mean": 0.7276666666666666,
+        "std": 0.11573485022047404
+      }
+    },
+    "confidence_by_label_pred": {
+      "FALSE": {
+        "mean": 0.9084444444444445,
+        "std": 0.03444516128286336
+      },
+      "MIXED": {
+        "mean": 0.6840136054421769,
+        "std": 0.13357797215418385
+      },
+      "FACT": {
+        "mean": 0.8700000000000001,
+        "std": 0.04031128874149276
+      }
+    }
+  }
+}
