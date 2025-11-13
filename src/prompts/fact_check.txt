@@ -13,4 +13,4 @@ Follow strictly:
 
 Now evaluate the following claim:
 
-Claim: 
+Claim: {claim} 
