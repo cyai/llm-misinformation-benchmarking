@@ -40,17 +40,17 @@ def load_politifact(data_dir: Path, split: str = "train"):
             f"Missing required columns in JSON. Expected 'statement' and 'verdict'. Found: {df.columns.tolist()}"
         )
 
-    # Some releases have many label granularities (pants-fire, false, half-true, etc.)
-    # We map them to {FACT, MIXED, FALSE} for this run; adjust mapping as you like.
+    # Map labels to binary classification: FACT vs FALSE
+    # We map {true, mostly-true} -> FACT
+    # Everything else {false, mostly-false, pants-fire, half-true, barely-true} -> FALSE
     def map_label(x):
         if label_col is None:
             return None
         xl = str(x).strip().lower()
         if xl in {"true", "mostly-true"}:
             return "FACT"
-        if xl in {"half-true", "barely-true"}:
-            return "MIXED"
-        if xl in {"false", "pants-fire", "mostly-false"}:
+        # All other labels (false, mostly-false, pants-fire, half-true, barely-true) map to FALSE
+        if xl in {"false", "pants-fire", "mostly-false", "half-true", "barely-true"}:
             return "FALSE"
         # unseen/other
         return None

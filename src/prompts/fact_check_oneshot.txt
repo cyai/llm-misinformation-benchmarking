@@ -11,6 +11,18 @@ Follow strictly:
 •⁠  ⁠Output ONLY valid JSON, no extra text.
 •⁠  ⁠If uncertain, prefer "FALSE" with an honest rationale.
 
+Example:
+
+Claim: "The Great Wall of China is visible from space with the naked eye."
+
+{
+  "verdict": "FALSE",
+  "confidence": 0.95,
+  "rationale": "While the Great Wall of China is very long, it is too narrow and blends with the natural terrain. Astronauts report that it cannot be seen from space without aid.",
+  "cited_knowledge": "General scientific consensus and astronaut reports on visibility of Earth structures from orbit.",
+  "safety_notes": ""
+}
+
 Now evaluate the following claim:
 
 Claim: 
