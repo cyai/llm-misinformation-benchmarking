@@ -1,0 +1,68 @@
+{
+  "zero_shot": {
+    "iteration_0": {
+      "output_file": "results/experiments/zero_shot/iteration_0.jsonl",
+      "run_name": "openai_gpt-5-mini-2025-08-07_zero_shot_iter0"
+    },
+    "iteration_1": {
+      "output_file": "results/experiments/zero_shot/iteration_1.jsonl",
+      "run_name": "openai_gpt-5-mini-2025-08-07_zero_shot_iter1"
+    },
+    "iteration_2": {
+      "output_file": "results/experiments/zero_shot/iteration_2.jsonl",
+      "run_name": "openai_gpt-5-mini-2025-08-07_zero_shot_iter2"
+    },
+    "iteration_3": {
+      "output_file": "results/experiments/zero_shot/iteration_3.jsonl",
+      "run_name": "openai_gpt-5-mini-2025-08-07_zero_shot_iter3"
+    },
+    "iteration_4": {
+      "output_file": "results/experiments/zero_shot/iteration_4.jsonl",
+      "run_name": "openai_gpt-5-mini-2025-08-07_zero_shot_iter4"
+    }
+  },
+  "one_shot": {
+    "iteration_0": {
+      "output_file": "results/experiments/one_shot/iteration_0.jsonl",
+      "run_name": "openai_gpt-5-mini-2025-08-07_one_shot_iter0"
+    },
+    "iteration_1": {
+      "output_file": "results/experiments/one_shot/iteration_1.jsonl",
+      "run_name": "openai_gpt-5-mini-2025-08-07_one_shot_iter1"
+    },
+    "iteration_2": {
+      "output_file": "results/experiments/one_shot/iteration_2.jsonl",
+      "run_name": "openai_gpt-5-mini-2025-08-07_one_shot_iter2"
+    },
+    "iteration_3": {
+      "output_file": "results/experiments/one_shot/iteration_3.jsonl",
+      "run_name": "openai_gpt-5-mini-2025-08-07_one_shot_iter3"
+    },
+    "iteration_4": {
+      "output_file": "results/experiments/one_shot/iteration_4.jsonl",
+      "run_name": "openai_gpt-5-mini-2025-08-07_one_shot_iter4"
+    }
+  },
+  "few_shot": {
+    "iteration_0": {
+      "output_file": "results/experiments/few_shot/iteration_0.jsonl",
+      "run_name": "openai_gpt-5-mini-2025-08-07_few_shot_iter0"
+    },
+    "iteration_1": {
+      "output_file": "results/experiments/few_shot/iteration_1.jsonl",
+      "run_name": "openai_gpt-5-mini-2025-08-07_few_shot_iter1"
+    },
+    "iteration_2": {
+      "output_file": "results/experiments/few_shot/iteration_2.jsonl",
+      "run_name": "openai_gpt-5-mini-2025-08-07_few_shot_iter2"
+    },
+    "iteration_3": {
+      "output_file": "results/experiments/few_shot/iteration_3.jsonl",
+      "run_name": "openai_gpt-5-mini-2025-08-07_few_shot_iter3"
+    },
+    "iteration_4": {
+      "output_file": "results/experiments/few_shot/iteration_4.jsonl",
+      "run_name": "openai_gpt-5-mini-2025-08-07_few_shot_iter4"
+    }
+  }
+}

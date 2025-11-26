@@ -1,0 +1,48 @@
+{
+  "timestamp": "2025-11-13T19:29:09.843308",
+  "provider": "openai",
+  "model": "gpt-5-mini-2025-08-07",
+  "strategies": [
+    "zero_shot",
+    "one_shot",
+    "few_shot"
+  ],
+  "iterations": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "max_samples": 0,
+  "split_config": {
+    "split_ratios": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "base_seed": 42,
+    "n_iterations": 5,
+    "dataset_sizes": {
+      "train": 12691,
+      "val": 4230,
+      "test": 4231,
+      "total": 21152
+    },
+    "label_distribution": {
+      "train": {
+        "FALSE": 9270,
+        "FACT": 3421
+      },
+      "val": {
+        "FALSE": 3023,
+        "FACT": 1207
+      },
+      "test": {
+        "FALSE": 3064,
+        "FACT": 1167
+      }
+    },
+    "created_at": "2025-11-12T16:24:18.438214"
+  }
+}
