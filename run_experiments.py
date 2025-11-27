@@ -26,6 +26,8 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from src.utils.dataset_split import load_split_config, get_test_data_for_iteration
 from src.chains.fact_check import build_fact_check_chain
+from src.chains.fact_check_with_search import build_fact_check_search_chain
+from src.tools.search import SearchTool
 from src.models.llm import make_chat_model
 from src.config import settings
 
@@ -35,7 +37,12 @@ PROMPT_STRATEGIES = {
     "zero_shot": "src/prompts/fact_check.txt",
     "one_shot": "src/prompts/fact_check_oneshot.txt",
     "few_shot": "src/prompts/fact_check_fewshot.txt",
+    "cot": "src/prompts/fact_check_cot.txt",
+    "search": "src/prompts/fact_check_search.txt",
 }
+
+# Strategies that require search tool
+SEARCH_STRATEGIES = {"search"}
 
 
 def run_inference(chain, test_data, strategy, iteration, output_file, max_samples=None):
@@ -245,6 +252,19 @@ def main():
         provider=args.provider, model_name=model_name, api_key=settings.openai_api_key
     )
 
+    # Initialize search tool if needed
+    search_tool = None
+    if any(s in SEARCH_STRATEGIES for s in strategies_to_run):
+        try:
+            search_tool = SearchTool(max_results=5)
+            print("✓ Search tool initialized")
+        except Exception as e:
+            print(f"⚠ Warning: Could not initialize search tool: {e}")
+            print("  Search-based strategies will be skipped.")
+            print(
+                "  To enable: Set SERPAPI_API_KEY or (GOOGLE_API_KEY + GOOGLE_CSE_ID) in .env"
+            )
+
     # Create experiment metadata
     experiment_meta = {
         "timestamp": datetime.now().isoformat(),
@@ -285,12 +305,22 @@ def main():
             )
             continue
 
+        # Skip search strategies if search tool unavailable
+        if strategy in SEARCH_STRATEGIES and not search_tool:
+            print(f"\nSkipping {strategy}: Search tool not available")
+            continue
+
         print(f"\n{'='*60}")
         print(f"STRATEGY: {strategy.upper()}")
         print(f"{'='*60}")
 
         # Initialize chain for this strategy
-        chain = build_fact_check_chain(llm=llm, prompt_path=prompt_file)
+        if strategy in SEARCH_STRATEGIES:
+            chain = build_fact_check_search_chain(
+                llm=llm, prompt_path=prompt_file, search_tool=search_tool
+            )
+        else:
+            chain = build_fact_check_chain(llm=llm, prompt_path=prompt_file)
 
         strategy_results = {}
 
