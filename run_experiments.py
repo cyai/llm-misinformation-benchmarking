@@ -27,7 +27,10 @@ sys.path.insert(0, str(Path(__file__).parent))
 from src.utils.dataset_split import load_split_config, get_test_data_for_iteration
 from src.chains.fact_check import build_fact_check_chain
 from src.chains.fact_check_with_search import build_fact_check_search_chain
+from src.chains.fact_check_rag import build_fact_check_rag_chain
 from src.tools.search import SearchTool
+from src.weaviate.client import get_weaviate_client
+from src.weaviate.retriever import FactCheckRetriever
 from src.models.llm import make_chat_model
 from src.config import settings
 
@@ -39,10 +42,14 @@ PROMPT_STRATEGIES = {
     "few_shot": "src/prompts/fact_check_fewshot.txt",
     "cot": "src/prompts/fact_check_cot.txt",
     "search": "src/prompts/fact_check_search.txt",
+    "rag": "src/prompts/fact_check_rag.txt",
 }
 
 # Strategies that require search tool
 SEARCH_STRATEGIES = {"search"}
+
+# Strategies that require RAG (Weaviate)
+RAG_STRATEGIES = {"rag"}
 
 
 def run_inference(chain, test_data, strategy, iteration, output_file, max_samples=None):
@@ -265,6 +272,28 @@ def main():
                 "  To enable: Set SERPAPI_API_KEY or (GOOGLE_API_KEY + GOOGLE_CSE_ID) in .env"
             )
 
+    # Initialize Weaviate client if needed for RAG
+    weaviate_client = None
+    if any(s in RAG_STRATEGIES for s in strategies_to_run):
+        try:
+            weaviate_client = get_weaviate_client(
+                url="http://localhost:8080", openai_api_key=settings.openai_api_key
+            )
+            if weaviate_client.is_ready():
+                print("✓ Weaviate client initialized")
+            else:
+                print("⚠ Warning: Weaviate not ready")
+                weaviate_client = None
+        except Exception as e:
+            print(f"⚠ Warning: Could not initialize Weaviate: {e}")
+            print("  RAG strategies will be skipped.")
+            print(
+                "  To enable: Run 'docker-compose -f docker-compose.weaviate.yml up -d'"
+            )
+            print(
+                "  Then: python -m src.weaviate.deploy && python -m src.weaviate.vectorize"
+            )
+
     # Create experiment metadata
     experiment_meta = {
         "timestamp": datetime.now().isoformat(),
@@ -310,17 +339,14 @@ def main():
             print(f"\nSkipping {strategy}: Search tool not available")
             continue
 
+        # Skip RAG strategies if Weaviate unavailable
+        if strategy in RAG_STRATEGIES and not weaviate_client:
+            print(f"\nSkipping {strategy}: Weaviate not available")
+            continue
+
         print(f"\n{'='*60}")
         print(f"STRATEGY: {strategy.upper()}")
         print(f"{'='*60}")
-
-        # Initialize chain for this strategy
-        if strategy in SEARCH_STRATEGIES:
-            chain = build_fact_check_search_chain(
-                llm=llm, prompt_path=prompt_file, search_tool=search_tool
-            )
-        else:
-            chain = build_fact_check_chain(llm=llm, prompt_path=prompt_file)
 
         strategy_results = {}
 
@@ -331,6 +357,26 @@ def main():
             print(
                 f"\n[{current_run}/{total_runs}] Running iteration {iter_idx} (seed: {iteration_config['seed']})"
             )
+
+            # Initialize chain for this strategy (iteration-specific for RAG)
+            if strategy in RAG_STRATEGIES:
+                # Create retriever for this specific iteration
+                retriever = FactCheckRetriever(
+                    client=weaviate_client, iteration_id=iter_idx
+                )
+                chain = build_fact_check_rag_chain(
+                    llm=llm,
+                    prompt_path=prompt_file,
+                    retriever=retriever,
+                    top_k=5,
+                    certainty=0.7,
+                )
+            elif strategy in SEARCH_STRATEGIES:
+                chain = build_fact_check_search_chain(
+                    llm=llm, prompt_path=prompt_file, search_tool=search_tool
+                )
+            else:
+                chain = build_fact_check_chain(llm=llm, prompt_path=prompt_file)
 
             # Get test data for this iteration
             iter_test_data = get_test_data_for_iteration(test_data, iteration_config)

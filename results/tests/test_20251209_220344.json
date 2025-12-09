@@ -1,0 +1,19 @@
+{
+  "claim": "\"Thirty years ago we were the most college-educated country on the globe. Today we are No. 11.\"",
+  "claim_id": "11733",
+  "gold_label": "FALSE",
+  "timestamp": "2025-12-09T22:03:13.458498",
+  "strategies": {
+    "rag": {
+      "verdict": "FACT",
+      "confidence": 0.78,
+      "rationale": "The core of the claim \u2014 that the United States once led the world in college attainment and has fallen well below first place \u2014 is supported by authoritative analyses. Similar verified claims [1] and [2] state that one generation (around 1990) the U.S. led the world in the share of college-educated young adults and that today it ranks well outside the top 10 (those fact checks found it around 12th\u201316th depending on the dataset). Similar claim [5] also notes that more than eight countries now exceed the U.S. in college-degree share. Rankings vary by the exact measure (e.g., percent of 25\u201334 year\u2011olds with tertiary education), the year of comparison, and the data source, so \u201cNo. 11\u201d is a plausible specific ranking within the range reported by the cited fact checks. Because the substantive point (once first, now roughly around 10\u201316th) is accurate and the exact ordinal can shift by dataset/year, the claim is properly characterized as FACT.",
+      "cited_knowledge": [
+        "Similar claim [1]: One generation ago U.S. led world in college graduation; now ranked 16th (FACT).",
+        "Similar claim [2]: In 1990 U.S. led percentage of 25\u201334 year olds with college degrees; today around 12th (FACT).",
+        "Similar claim [5]: More than eight countries now lead the United States in percentage of college graduates."
+      ],
+      "safety_notes": ""
+    }
+  }
+}

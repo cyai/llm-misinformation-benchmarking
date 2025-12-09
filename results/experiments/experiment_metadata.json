@@ -1,11 +1,9 @@
 {
-  "timestamp": "2025-11-13T19:29:09.843308",
+  "timestamp": "2025-12-09T19:13:57.385287",
   "provider": "openai",
   "model": "gpt-5-mini-2025-08-07",
   "strategies": [
-    "zero_shot",
-    "one_shot",
-    "few_shot"
+    "search"
   ],
   "iterations": [
     0,

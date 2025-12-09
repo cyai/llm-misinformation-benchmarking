@@ -1,0 +1,22 @@
+{
+  "claim": "The Earth is flat.",
+  "claim_id": "custom",
+  "gold_label": "UNKNOWN",
+  "timestamp": "2025-12-09T19:18:08.142074",
+  "strategies": {
+    "cot": {
+      "verdict": "FALSE",
+      "confidence": 0.99,
+      "rationale": "Multiple independent lines of direct observational and theoretical evidence\u2014space imagery, functioning satellites and GPS, circumnavigation, star visibility changes with latitude, and lunar eclipse geometry\u2014consistently show Earth is not flat but an oblate spheroid. Rejecting this requires implausible, unsupported conspiracy-level explanations.",
+      "cited_knowledge": "Basic principles and observations from astronomy, physics (gravity and orbital mechanics), space exploration, navigation, and everyday terrestrial observations",
+      "safety_notes": "",
+      "reasoning_steps": {
+        "claim_analysis": "The claim asserts that the planet Earth has a flat/planar shape rather than being roughly spherical (an oblate spheroid) and implies that common evidence for a round Earth is incorrect or illusory.",
+        "background_knowledge": "Physics and geology predict large bodies become roughly spherical due to gravity. Empirical evidence includes photographs from space, satellite operations, GPS and telecommunications requiring orbital mechanics, circumnavigation by ships and aircraft, differing star visibility and solar angles by latitude, time zones, the way ships disappear hull-first over the horizon, measurable curvature from high-altitude observations, and Earth's circular shadow on the Moon during lunar eclipses.",
+        "verification_logic": "The single core assertion (Earth is flat) is inconsistent with: (1) direct imagery from many independent space agencies and private satellites showing a round Earth; (2) satellite orbits and GPS functioning which depend on a spherical Earth model; (3) navigational facts like circumnavigation and consistent time zone behavior; (4) astronomical observations such as changing star constellations with latitude and round lunar eclipse shadows; (5) observable horizon and curvature effects at altitude and with long-distance measurements. Each line of evidence independently supports a spherical/oblate Earth, so the flat-Earth assertion fails verification.",
+        "contradictions": "The claim contradicts multiple, independent lines of observational and theoretical evidence (space photography, orbital mechanics, navigation, astronomy, and terrestrial observations). Some flat-Earth arguments rely on misinterpretations or alleged conspiracies to dismiss this evidence; accepting the claim requires assuming a global, multi-decade coordinated deception across numerous countries, private companies, and independent observers, which is implausible and unsupported by evidence.",
+        "synthesis": "Given the converging, independent evidence from spaceflight, satellites, navigation, astronomy, and everyday observations, the assertion that the Earth is flat is false. The established scientific model of an oblate spheroid Earth best explains all available data."
+      }
+    }
+  }
+}

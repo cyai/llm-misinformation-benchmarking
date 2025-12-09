@@ -1,0 +1,20 @@
+{
+  "claim": "\"Thirty years ago we were the most college-educated country on the globe. Today we are No. 11.\"",
+  "claim_id": "11733",
+  "gold_label": "FALSE",
+  "timestamp": "2025-12-09T22:00:31.664607",
+  "strategies": {
+    "rag": {
+      "verdict": "FACT",
+      "confidence": 0.8,
+      "rationale": "The claim that the U.S. was the most college-educated country about thirty years ago and now ranks around 11th is consistent with published analyses using the common metric (share of 25\u201334 year\u2011olds with tertiary degrees). Similar verified checks show the U.S. led in roughly 1990 and has fallen well down the rankings since then: similar claim [2] (verified FACT) notes the U.S. led in 1990 and is 12th today, and similar claim [1] (FACT) makes a comparable point about leading a generation ago and falling to mid\u2011teens. Similar claim [5] (FACT) also confirms that more than eight countries now exceed the U.S. in college graduate share. Exact rank varies by data source and the year measured (OECD vs. broader global sets, and which age cohort or degree definition is used), so \u201cNo. 11\u201d is within the plausible range of recent rankings. Because the underlying pattern \u2014 from first place ~30 years ago to roughly the low-teens today \u2014 is supported, the claim is best judged FACT, with moderate-high confidence due to variation across data sources and years.",
+      "cited_knowledge": [
+        "Similar claim [2]: In 1990 the U.S. led the world in percentage of 25-34 year olds with college degrees; today in 12th place (VERIFIED FACT).",
+        "Similar claim [1]: One generation ago the U.S. led; today ranking around the mid-teens (VERIFIED FACT).",
+        "Similar claim [5]: More than eight countries now lead the U.S. in percentage of college graduates (VERIFIED FACT).",
+        "Similar claim [3]: Variations in specific rank numbers have occurred and some precise numeric claims were judged FALSE, showing sensitivity to source/year."
+      ],
+      "safety_notes": ""
+    }
+  }
+}

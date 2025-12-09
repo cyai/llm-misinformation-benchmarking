@@ -1,0 +1,16 @@
+{
+  "claim": "The Earth is flat.",
+  "claim_id": "custom",
+  "gold_label": "UNKNOWN",
+  "timestamp": "2025-12-09T19:19:03.491987",
+  "strategies": {
+    "search": {
+      "verdict": "FALSE",
+      "confidence": 0.98,
+      "rationale": "The claim is false: scientific evidence and mainstream sources state the Earth is spherical, not flat. For example, a summary snippet calls flat-Earth an \"archaic and scientifically disproven conception\" (Jan 26, 2016), another notes \"scientific evidence says the Earth is a sphere orbiting the Sun\" (Jan 11, 2019), and a recent item explains that space geodesy relies on Earth's roundness (Mar 11, 2025). These show strong scientific consensus against the flat-Earth claim.",
+      "cited_knowledge": "Search snippets: Jan 26, 2016 (flat Earth described as archaic and scientifically disproven); Jan 11, 2019 (scientific evidence: Earth is a sphere); Mar 11, 2025 (space geodesy uses Earth's roundness); additional popular-science summaries affirm a bumpy, mountainous globe.",
+      "safety_notes": "",
+      "search_relevance": 0.95
+    }
+  }
+}
