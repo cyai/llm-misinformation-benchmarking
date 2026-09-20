@@ -205,3 +205,37 @@ To reproduce experiments:
 2. Use the same iteration seeds from `test_iterations.json`
 3. Run with the same model and prompts
 4. Results will be identical (deterministic)
+
+
+
+## Run CoT:
+```bash
+nohup python run_experiments.py --strategies cot > logs/cot_experiment.log 2>&1 &
+```
+
+## RAG Setup with Weaviate
+```bash
+pip install -r requirements.txt
+```
+
+```bash
+docker-compose -f docker-compose.weaviate.yml up -d
+```
+
+```bash
+python -m src.weaviate.deploy
+```
+
+```bash
+python -m src.weaviate.vectorize
+```
+
+### Run RAG:
+```bash
+nohup python run_experiments.py --strategies rag > logs/rag_experiment.log 2>&1 &
+```
+
+### Run Google Search API tooling expirement:
+```bash
+nohup python run_experiments.py --strategies search > logs/search_experiment.log 2>&1 &
+```

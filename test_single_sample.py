@@ -186,6 +186,21 @@ def main():
         "--model", type=str, default=None, help="Model name (default: from .env)"
     )
     parser.add_argument(
+        "--provider",
+        type=str,
+        default="openai",
+        choices=[
+            "openai",
+            "anthropic",
+            "google",
+            "xai",
+            "ollama",
+            "huggingface",
+            "deepseek",
+        ],
+        help="LLM provider (default: openai)",
+    )
+    parser.add_argument(
         "--output-dir",
         type=Path,
         default=Path("results/tests"),
@@ -262,11 +277,32 @@ def main():
         claim = "The Earth is flat."
         print(f"No claim provided, using default: {claim}")
 
-    # Initialize LLM
+    # Initialize LLM with provider-specific API key
     model_name = args.model or settings.openai_model
-    print(f"\nInitializing LLM: {model_name}")
+    provider = args.provider.lower()
+
+    # Get API key based on provider
+    api_key_map = {
+        "openai": settings.openai_api_key,
+        "anthropic": settings.anthropic_api_key,
+        "google": settings.google_api_key,
+        "xai": settings.xai_api_key,
+        "huggingface": settings.huggingface_api_key,
+        "deepseek": settings.deepseek_api_key,
+        "ollama": None,  # Ollama doesn't need API key
+    }
+
+    api_key = api_key_map.get(provider)
+
+    # Validate API key for non-Ollama providers
+    if provider != "ollama" and not api_key:
+        print(f"Error: No API key found for provider '{provider}'")
+        print(f"Please add the appropriate API key to your .env file")
+        sys.exit(1)
+
+    print(f"\nInitializing LLM: {provider}/{model_name}")
     llm = make_chat_model(
-        provider="openai", model_name=model_name, api_key=settings.openai_api_key
+        provider=provider, model_name=model_name, api_key=api_key, temperature=0.0
     )
 
     # Initialize search tool if needed

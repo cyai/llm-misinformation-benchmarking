@@ -253,10 +253,36 @@ def main():
     print(f"  Test iterations: {iterations_to_run}")
     print(f"  Max samples per iteration: {args.max_samples or 'unlimited'}")
 
-    # Initialize LLM
+    # Initialize LLM with provider-specific API key
     model_name = args.model or settings.openai_model
+
+    # Get API key based on provider
+    api_key_map = {
+        "openai": settings.openai_api_key,
+        "anthropic": settings.anthropic_api_key,
+        "google": settings.google_api_key,
+        "xai": settings.xai_api_key,
+        "huggingface": settings.huggingface_api_key,
+        "deepseek": settings.deepseek_api_key,
+        "ollama": None,  # Ollama doesn't need API key
+    }
+
+    api_key = api_key_map.get(args.provider.lower())
+
+    # Validate API key for non-Ollama providers
+    if args.provider.lower() != "ollama" and not api_key:
+        print(f"Error: No API key found for provider '{args.provider}'")
+        print(f"Please add the appropriate API key to your .env file:")
+        print(f"  - openai: OPENAI_API_KEY")
+        print(f"  - anthropic: ANTHROPIC_API_KEY")
+        print(f"  - google: GOOGLE_API_KEY")
+        print(f"  - xai: XAI_API_KEY")
+        print(f"  - huggingface: HUGGINGFACE_API_KEY")
+        print(f"  - deepseek: DEEPSEEK_API_KEY")
+        sys.exit(1)
+
     llm = make_chat_model(
-        provider=args.provider, model_name=model_name, api_key=settings.openai_api_key
+        provider=args.provider, model_name=model_name, api_key=api_key, temperature=0.0
     )
 
     # Initialize search tool if needed

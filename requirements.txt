@@ -45,6 +45,9 @@ langchain==0.3.27
 langchain-community==0.3.31
 langchain-core==0.3.79
 langchain-openai==0.3.35
+langchain-anthropic>=0.1.0
+langchain-google-genai>=1.0.0
+langchain-huggingface>=0.0.1
 langchain-text-splitters==0.3.11
 langsmith==0.4.37
 markdown-it-py==3.0.0
